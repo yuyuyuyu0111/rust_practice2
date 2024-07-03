@@ -6,14 +6,37 @@ fn main() {
     println!("初心に帰ってコーディングをやるリポジトリ");
 
     println!("起動したいものを以下から選択して数値を入力");
-    println!("1:じゃんけん 2:数当て");
+    println!("1:じゃんけん 2:数当て 3:FizzBuzz");
     let choice = input();
     match choice {
         1 => janken(),
         2 => kazuate(),
+        3 => fizzbuzz(),
         _ => panic!("正しい数値を入力してください。入力された値：{}", choice),
     }
 }
+
+fn fizzbuzz() {
+    println!("FizzBuzzを眺めよ");
+    println!("とりあえず、上限を入力（0以下の値は適切な値に変換されます。）");
+    let input_num = input();
+
+    println!("-----START-----");
+
+    let limit = if input_num == 0 { 1 } else { input_num.abs() };
+    for i in 1..=limit {
+        if i % 15 == 0 {
+            println!("FizzBuzz");
+        } else if i % 3 == 0 {
+            println!("Fizz");
+        } else if i % 5 == 0 {
+            println!("Buzz");
+        } else {
+            println!("{}", i);
+        }
+    }
+}
+
 fn kazuate() {
     println!("数当て開始\n （範囲は1から10まで）");
 
