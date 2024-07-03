@@ -3,6 +3,18 @@ use std::io::stdin;
 use rand::Rng;
 
 fn main() {
+    println!("初心に帰ってコーディングをやるリポジトリ");
+
+    println!("起動したいものを以下から選択して数値を入力");
+    println!("1:じゃんけん");
+    let choice = input();
+    match choice {
+        1 => janken(),
+        _ => panic!("正しい数値を入力してください。入力された値：{}", choice),
+    }
+}
+
+fn janken() {
     //乱数初期化
     let mut rng = rand::thread_rng();
 
