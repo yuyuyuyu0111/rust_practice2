@@ -1,4 +1,4 @@
-use std::{io::stdin, path::absolute};
+use std::io::stdin;
 
 use rand::Rng;
 
