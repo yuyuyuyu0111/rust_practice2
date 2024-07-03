@@ -9,6 +9,7 @@ fn main() {
         println!("1:グー 2:チョキ 3:パー 0:終了");
         let player_hand = input();
         if player_hand == 0 {
+            println!("じゃんけんを終了します");
             break;
         }
 
