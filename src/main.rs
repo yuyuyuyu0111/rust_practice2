@@ -1,8 +1,12 @@
-use std::io::stdin;
+use std::{io::stdin, path::absolute};
+
+use rand::Rng;
 
 fn main() {
+    //乱数初期化
+    let mut rng = rand::thread_rng();
+
     println!("じゃんけん開始！");
-    let mut index: i64 = 0;
 
     loop {
         println!("次に出す手を入力してください");
@@ -13,7 +17,8 @@ fn main() {
             break;
         }
 
-        let com_hand = index % 3 + 1;
+        let rand_num: i64 = rng.gen();
+        let com_hand = rand_num.abs() % 3 + 1;
 
         println!("あなたの出した手は{}", hands(player_hand));
         println!("COMの出した手は{}", hands(com_hand));
@@ -27,13 +32,6 @@ fn main() {
             println!("かち！");
         } else {
             println!("まけ...");
-        }
-
-        if index == i64::MAX {
-            //オーバーフロー対策　9223372036854775807回もじゃんけんするなという話だが
-            index = 0;
-        } else {
-            index = index + 1;
         }
     }
 }
@@ -49,7 +47,10 @@ fn hands(hand_num: i64) -> &'static str {
         2 => return "チョキ",
         3 => return "パー",
         _ => {
-            panic!("入力してはいけない値が入力されています")
+            panic!(
+                "入力してはいけない値が入力されています。\n入力された値は{}です。",
+                hand_num
+            );
         }
     }
 }
