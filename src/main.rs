@@ -6,12 +6,33 @@ fn main() {
     println!("初心に帰ってコーディングをやるリポジトリ");
 
     println!("起動したいものを以下から選択して数値を入力");
-    println!("1:じゃんけん");
+    println!("1:じゃんけん 2:数当て");
     let choice = input();
     match choice {
         1 => janken(),
+        2 => kazuate(),
         _ => panic!("正しい数値を入力してください。入力された値：{}", choice),
     }
+}
+fn kazuate() {
+    println!("数当て開始\n （範囲は1から10まで）");
+
+    let mut rng = rand::thread_rng();
+    let num: i64 = rng.gen_range(1..10);
+    loop {
+        let inputted_number = input();
+
+        if inputted_number == num {
+            break;
+        }
+        if inputted_number > num {
+            println!("入力された値は大きすぎます");
+        } else {
+            println!("入力された値は小さすぎます");
+        }
+    }
+
+    println!("正解は{}でした！", num);
 }
 
 fn janken() {
